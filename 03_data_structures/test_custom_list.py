@@ -122,7 +122,7 @@ def test_reverse_list(custom_list):
     custom_list.add(2)
     custom_list.add(3)
     
-    custom_list.items.reverse()
+    custom_list.reverse()
     assert custom_list.items == [3, 2, 1]
 
 def test_sort_list(custom_list):
