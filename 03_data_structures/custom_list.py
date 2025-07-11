@@ -13,7 +13,7 @@ class CustomList:
         else:
             raise IndexError("Index out of range")
 
-    def remove(self, item, index=None):
+    def remove(self, item=None, index=None):
         """Remove an item from the list by value or index."""
         if index is not None:
             if 0 <= index < len(self.items):
@@ -75,9 +75,9 @@ class CustomList:
     def get_sublist_in_range(self, start, end):
         """Return a sublist from start to end index."""
         if start < 0 or end < 0:
-            raise ValueError("Start and end indices must be non-negative")
+            raise IndexError("Start and end indices must be non-negative")
         if start >= end:
-            raise ValueError("Start index must be less than end index")
+            raise IndexError("Start index must be less than end index")
         if 0 <= start < len(self.items) and 0 <= end <= len(self.items):
             return self.items[start:end]
         else:
