@@ -12,9 +12,11 @@ class FileManager:
     @staticmethod
     def read_file(file_path):
         """Read the content of the file."""
-        with open(file_path, 'r') as file:
-            content = file.read()
-            return content
+        try:
+            with open(file_path, 'r') as file:
+                return file.read()
+        except FileNotFoundError:
+            raise FileNotFoundError(f"The file {file_path} does not exist.")
 
     @staticmethod
     def append_to_file(file_path, content):
