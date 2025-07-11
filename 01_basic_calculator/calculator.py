@@ -13,7 +13,7 @@ class Calculator:
 
     def divide(self, a, b):
         if b == 0:
-            raise ValueError("Cannot divide by zero")
+            raise ZeroDivisionError("Cannot divide by zero")
         return a / b
 
     def power(self, a, b):
@@ -21,7 +21,7 @@ class Calculator:
     
     def square_root(self, a):
         if a < 0:
-            raise ZeroDivisionError("Cannot take square root of negative number")
+            raise ValueError("Cannot take square root of negative number")
         return a**0.5
     
 if __name__ == "__main__":
