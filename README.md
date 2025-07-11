@@ -1,3 +1,10 @@
+# py-test-training
+
+A collection of Python modules and tests for training purposes.
+
+## Project Structure
+
+```
 py-test-training/
 ├── README.md
 ├── requirements.txt
@@ -26,3 +33,4 @@ py-test-training/
     ├── tcp_client.py
     ├── tcp_server.py
     └── test_tcp.py
+```
