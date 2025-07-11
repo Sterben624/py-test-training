@@ -44,6 +44,8 @@ class StringUtils:
     
     @staticmethod
     def is_start_with(input_string: str, prefix: str) -> bool:
+        if prefix == "":
+            raise ValueError("Prefix cannot be an empty string")
         return input_string.startswith(prefix)
     
     @staticmethod
