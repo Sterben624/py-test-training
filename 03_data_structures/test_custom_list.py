@@ -131,7 +131,7 @@ def test_sort_list(custom_list):
     custom_list.add(1)
     custom_list.add(2)
     
-    custom_list.items.sort()
+    custom_list.sort()
     assert custom_list.items == [1, 2, 3]
     
     custom_list.items.sort(reverse=True)
