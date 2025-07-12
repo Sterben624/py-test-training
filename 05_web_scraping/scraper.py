@@ -47,12 +47,24 @@ class WebScraper:
             if href and (href.startswith('http://') or href.startswith('https://')):
                 list_of_urls.append(href)
         return list_of_urls
+    
+    def get_text_from_css_selector(self, url: str, css_selector: str) -> str:
+        """Get text from a specific CSS selector."""
+        html_content = self._fetch_page(url)
+        if not html_content:
+            raise ValueError("No content fetched from the URL")
+        soup = BeautifulSoup(html_content, 'html.parser')
+        element = soup.select_one(css_selector)
+        if element and isinstance(element, Tag):
+            return element.get_text(strip=True)
+        else:
+            raise ValueError(f"No element found for CSS selector: {css_selector}")
 
 if __name__ == "__main__":
     url = "https://www.iana.org/help/example-domains"
     scraper = WebScraper()
-    list_of_urls = scraper.find_urls(url)
-    print(list_of_urls)
+    # list_of_urls = scraper.find_urls(url)
+    print(scraper._fetch_page(url))
 
 """
 TODO
