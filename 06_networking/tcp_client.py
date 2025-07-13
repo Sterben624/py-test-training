@@ -1,39 +1,36 @@
-import socket
+from tcp_socket import TCPSocket
 
 class TCPClient:
     def __init__(self, host='localhost', port=8080):
         self.host = host
         self.port = port
-        self.client_socket = None
+        self.tcp_socket = TCPSocket(host, port)
 
     def connect(self):
         """Connect to the TCP server."""
         try:
-            self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.client_socket.connect((self.host, self.port))
-            print(f"Connected to server at {self.host}:{self.port}")
+            self.tcp_socket.connect(self.host, self.port)
         except ConnectionRefusedError:
             raise ConnectionError(f"Cannot connect to server at {self.host}:{self.port}")
 
     def send_message(self, message):
         """Send a message to the server and receive the echo."""
-        if not self.client_socket:
+        if not self.tcp_socket.socket:
             raise Exception("Client is not connected to the server.")
         
-        self.client_socket.sendall(message.encode())
-        data = self.client_socket.recv(1024)
+        self.tcp_socket.send(message.encode())
+        data = self.tcp_socket.receive(1024)
         response = data.decode()
         print(f"Received from server: {response}")
         return response
 
     def close(self):
         """Close the client socket."""
-        if self.client_socket:
-            self.client_socket.close()
-            print("Client connection closed")
+        if self.tcp_socket.socket:
+            self.tcp_socket.close()
 
 if __name__ == "__main__":
-    client = TCPClient()
+    client = TCPClient("localhost", 8081)
     try:
         client.connect()
         while True:
