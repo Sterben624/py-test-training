@@ -13,7 +13,7 @@ class TCPClient:
         except ConnectionRefusedError:
             raise ConnectionError(f"Cannot connect to server at {self.host}:{self.port}")
 
-    def send_message(self, message):
+    def send_message(self, message: str):
         """Send a message to the server and receive the echo."""
         if not self.tcp_socket.socket:
             raise Exception("Client is not connected to the server.")
