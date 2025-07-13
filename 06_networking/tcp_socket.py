@@ -11,6 +11,11 @@ class TCPSocket:
         self.socket.bind((self.host, self.port))
         print(f"Socket bound to {self.host}:{self.port}")
 
+    def set_reuse_addr(self):
+        """Allow socket address reuse."""
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        print("Socket reuse address enabled")
+
     def listen(self, backlog=5):
         """Listen for incoming connections."""
         self.socket.listen(backlog)
